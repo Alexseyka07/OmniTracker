@@ -1,0 +1,53 @@
+﻿@model OmniTracker.Models.Request; 
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Редактировать заявку</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="CreateDate" />
+            <input type="hidden" asp-for="Status" />
+            <input type="hidden" asp-for="TermEimination" />
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" value="@Model.Description" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <dl class="row">
+                <dt class="col-sm-1">
+                    @Html.DisplayNameFor(model => model.CreateDate)
+                </dt>
+                <dd class="col-sm-15">
+                    @Html.DisplayFor(model => model.CreateDate)
+                </dd>
+                <dt class="col-sm-1">
+                    @Html.DisplayNameFor(model => model.Status)
+                </dt>
+                <dt class="col-sm-1">
+                    @Html.DisplayNameFor(model => model.TermEimination)
+                </dt>
+                <dd class="col-sm-15">
+                    @Html.DisplayFor(model => model.TermEimination)
+                </dd>
+                <dd class="col-sm-15">
+                    @Html.DisplayFor(model => model.Status)
+                </dd>
+            </dl>
+            <div class="form-group">
+                <input type="submit" value="Сохранить изменения" class="btn btn-primary" />  
+                <a asp-action="MyRequests">Назад</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

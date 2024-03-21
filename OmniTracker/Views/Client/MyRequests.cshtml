@@ -1,0 +1,52 @@
+﻿@model IEnumerable<OmniTracker.Models.Request>
+
+@{
+    ViewData["Title"] = "Мои Заявки";
+}
+
+<h1>Мои заявки</h1>
+
+<form asp-action="Create" >
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">новая заявка</button>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TermEimination)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TermEimination)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Редактировать заявку</a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

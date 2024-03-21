@@ -1,0 +1,56 @@
+﻿@model OmniTracker.Models.Request; 
+@{
+    Layout = "_LayoutAdmin";
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Редактировать заявку</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="CreateDate" />
+            
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" value="@Model.Description" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <select asp-for="Status" class="form-control">
+                    <option value="Новая">Новая</option>
+                    <option value="На рассмотрении">На рассмотрении</option>
+                    <option value="Выполнена">Выполнена</option>
+                </select>
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TermEimination" class="control-label"></label>
+                <input asp-for="TermEimination" class="form-control" value="@Model.TermEimination" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <dl class="row">
+                <dt class="col-sm-1">
+                    @Html.DisplayNameFor(model => model.CreateDate)
+                </dt>
+                <dd class="col-sm-15">
+                    @Html.DisplayFor(model => model.CreateDate)
+                </dd>
+               
+            </dl>
+            <div class="form-group">
+                <input type="submit" value="Сохранить изменения" class="btn btn-primary" />  
+                <a asp-action="MyRequests">Назад</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

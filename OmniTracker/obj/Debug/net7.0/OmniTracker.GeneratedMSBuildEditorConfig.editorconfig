@@ -1,0 +1,93 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = OmniTracker
+build_property.RootNamespace = OmniTracker
+build_property.ProjectDir = E:\Yandex Disk\YandexDisk\prodaction\GitHub\Мои проекты\OmniTracker\OmniTracker\
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = E:\Yandex Disk\YandexDisk\prodaction\GitHub\Мои проекты\OmniTracker\OmniTracker
+build_property._RazorSourceGeneratorDebug = 
+
+[E:/Yandex Disk/YandexDisk/prodaction/GitHub/Мои проекты/OmniTracker/OmniTracker/Views/Access/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNzXExvZ2luLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Yandex Disk/YandexDisk/prodaction/GitHub/Мои проекты/OmniTracker/OmniTracker/Views/Admin/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Yandex Disk/YandexDisk/prodaction/GitHub/Мои проекты/OmniTracker/OmniTracker/Views/Admin/MyRequests.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTXlSZXF1ZXN0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Yandex Disk/YandexDisk/prodaction/GitHub/Мои проекты/OmniTracker/OmniTracker/Views/Client/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Yandex Disk/YandexDisk/prodaction/GitHub/Мои проекты/OmniTracker/OmniTracker/Views/Client/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Yandex Disk/YandexDisk/prodaction/GitHub/Мои проекты/OmniTracker/OmniTracker/Views/Client/MyRequests.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XE15UmVxdWVzdHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Yandex Disk/YandexDisk/prodaction/GitHub/Мои проекты/OmniTracker/OmniTracker/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Yandex Disk/YandexDisk/prodaction/GitHub/Мои проекты/OmniTracker/OmniTracker/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Yandex Disk/YandexDisk/prodaction/GitHub/Мои проекты/OmniTracker/OmniTracker/Views/TechSpec/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVjaFNwZWNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Yandex Disk/YandexDisk/prodaction/GitHub/Мои проекты/OmniTracker/OmniTracker/Views/TechSpec/MyRequests.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVjaFNwZWNcTXlSZXF1ZXN0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Yandex Disk/YandexDisk/prodaction/GitHub/Мои проекты/OmniTracker/OmniTracker/Views/Users/AllUsers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcQWxsVXNlcnMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Yandex Disk/YandexDisk/prodaction/GitHub/Мои проекты/OmniTracker/OmniTracker/Views/Users/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Yandex Disk/YandexDisk/prodaction/GitHub/Мои проекты/OmniTracker/OmniTracker/Views/Users/My.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcTXkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Yandex Disk/YandexDisk/prodaction/GitHub/Мои проекты/OmniTracker/OmniTracker/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Yandex Disk/YandexDisk/prodaction/GitHub/Мои проекты/OmniTracker/OmniTracker/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Yandex Disk/YandexDisk/prodaction/GitHub/Мои проекты/OmniTracker/OmniTracker/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-3o9h81xxcm
+
+[E:/Yandex Disk/YandexDisk/prodaction/GitHub/Мои проекты/OmniTracker/OmniTracker/Views/Shared/_LayoutAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRBZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = b-jknb2ujvux
+
+[E:/Yandex Disk/YandexDisk/prodaction/GitHub/Мои проекты/OmniTracker/OmniTracker/Views/Shared/_LayoutLogin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = b-b5krs52hv7
+
+[E:/Yandex Disk/YandexDisk/prodaction/GitHub/Мои проекты/OmniTracker/OmniTracker/Views/Shared/_LayoutTechSpec.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXRUZWNoU3BlYy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = b-79owr1tk2g

@@ -1,0 +1,46 @@
+﻿@model OmniTracker.Models.User
+@using System.Security.Claims;
+
+@{
+    ViewData["Title"] = "My";
+}
+
+
+
+<div>
+    <h4>Личные данные</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Role)
+        </dt>
+        <dd class = "col-sm-10">
+            @{
+                if (Model.Role == "Client")
+                    Model.Role = "Клиент";
+                if (Model.Role == "TechSpec")
+                    Model.Role = "Технический специалист";
+                if (Model.Role == "Admin")
+                    Model.Role = "Администратор";
+             
+            }
+            @Html.DisplayFor(model => model.Role)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-controller="@User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role).Value" asp-action="MyRequests">Назад</a> |
+    <a asp-area="" asp-controller="Access" asp-action="LogOut">Выйти из аккаунта</a>
+</div>
