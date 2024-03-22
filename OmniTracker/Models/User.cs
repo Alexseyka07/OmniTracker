@@ -7,6 +7,7 @@ namespace OmniTracker.Models
     {
         public int Id { get; set; }
         [Display(Name = "Имя")]
+        [Required(ErrorMessage = "невозможное имя")]
         public string Name { get; set; }
         [Required(ErrorMessage = "невозможный email")]
         public string Email { get; set; }
