@@ -27,38 +27,13 @@ namespace OmniTracker.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(User modelUser)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(m => m.Email == modelUser.Email && m.Password == modelUser.Password);
-
+            var user = OmniTracker.Login.Login.SetLogin(_context, modelUser, HttpContext).Result;
             if (user == null)
             {
                 ViewData["ValidateMessage"] = "Пользователь не найден";
                 return View();
             }
 
-            List<Claim> claims = new List<Claim>()
-            {
-                new Claim(ClaimTypes.Email, user.Email),
-                new Claim("id", user.Id.ToString()),
-                new Claim(ClaimTypes.Role, user.Role),
-                new Claim(ClaimTypes.Name, user.Name)
-            };
-
-            ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            
-           
-           
-            AuthenticationProperties properties = new AuthenticationProperties()
-            {
-                AllowRefresh = true,
-                IsPersistent = true,
-                
-               
-            };
-            ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-
-
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal, properties);
-           
             return RedirectToAction("MyRequests", user.Role);
         }
         public async Task<IActionResult> LogOut()

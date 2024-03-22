@@ -21,12 +21,14 @@ namespace OmniTracker.Controllers
             _context = context;
         }
 
-        // GET: Requests
-
         public async Task<IActionResult> MyRequests(string search)
         {
             var users = await _context.Users.ToListAsync();
-            
+            if (!Login.Login.IsInRole(User, _context, HttpContext))
+            {
+                var id = User.Claims.FirstOrDefault(c => c.Type == "id").Value;
+                return RedirectToAction("MyRequests", users.FirstOrDefault(c => c.Id.ToString() == id).Role);
+            }
             if (!string.IsNullOrEmpty(search))
             {
                 var requestsContarins = _context.Requests.Where(r => r.User.Name!.Contains(search) || r.User.Email!.Contains(search) || r.Description!.Contains(search));
@@ -34,35 +36,39 @@ namespace OmniTracker.Controllers
             }
             var requests = _context.Requests;
             return View(await requests.ToListAsync());
-
         }
-
-        
-       
-
-        // GET: Requests/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
-            if (id == null || _context.Requests == null)
+
+            if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(MyRequests));
+            }
+            if (!Login.Login.IsInRole(User, _context, HttpContext))
+            {
+                var users = await _context.Users.ToListAsync();
+                var idl = User.Claims.FirstOrDefault(c => c.Type == "id").Value;
+                return RedirectToAction("MyRequests", users.FirstOrDefault(c => c.Id.ToString() == idl).Role);
             }
             var request = await _context.Requests.FindAsync(id);
             if (request == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(MyRequests));
             }
             return View(request);
         }
-
-        // POST: Requests/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Request requestModel)
         {
             if (id != requestModel.Id)
             {
-                return NotFound();
+                return RedirectToAction(nameof(MyRequests));
+            }
+            if (!Login.Login.IsInRole(User, _context, HttpContext))
+            {
+                var users = await _context.Users.ToListAsync();
+                var idl = User.Claims.FirstOrDefault(c => c.Type == "id").Value;
+                return RedirectToAction("MyRequests", users.FirstOrDefault(c => c.Id.ToString() == idl).Role);
             }
             var request = await _context.Requests.FindAsync(id);
             if (requestModel.Description != null)

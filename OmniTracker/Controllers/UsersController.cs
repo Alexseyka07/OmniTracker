@@ -21,46 +21,50 @@ namespace OmniTracker.Controllers
             _context = context;
         }
 
-        // GET: Users/Details/5
         [Authorize]
         public async Task<IActionResult> My()
         {
-    
-
+            var id = User.Claims.FirstOrDefault(c => c.Type == "id").Value;
             var user = await _context.Users
-                .FirstOrDefaultAsync(m => m.Id.ToString() == User.Claims.ToList()[1].Value);
+                .FirstOrDefaultAsync(m => m.Id.ToString() == id);
+            if (!Login.Login.IsInRole(User, _context, HttpContext))
+            {
+                return RedirectToAction("MyRequests", user.Role);
+            }
             if (user == null)
             {
                 return NotFound();
             }
 
             return View(user);
-        }
-        // GET: Requests/Edit/5
+        }      
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id)
         {
-            if (id == null || _context.Requests == null)
-            {
-                return NotFound();
-            }
-            var users = await _context.Users.FindAsync(id);
-            if (users == null)
-            {
-                return NotFound();
-            }
-            return View(users);
-        }
 
-        // POST: Requests/Edit/5
+            if (id == null)
+            {
+                return RedirectToAction(nameof(My));
+            }
+            var user = await _context.Users.FindAsync(id);
+            if (!Login.Login.IsInRole(User, _context, HttpContext))
+            {
+                var idl = User.Claims.FirstOrDefault(c => c.Type == "id").Value;
+                return RedirectToAction("MyRequests", user.Role);
+            }
+            if (user == null)
+            {
+                return RedirectToAction(nameof(My));
+            }
+            return View(user);
+        }
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, User userModel)
         {
             if (id != userModel.Id)
             {
-                return NotFound();
+                return RedirectToAction(nameof(My));
             }
             var user = await _context.Users.FindAsync(id);
             if (userModel != null)
@@ -82,6 +86,27 @@ namespace OmniTracker.Controllers
             }
             var users = _context.Users;
             return View(await users.ToListAsync());
+        }
+        public IActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Create(User user)
+        {
+            if (!Login.Login.IsInRole(User, _context, HttpContext))
+            {
+                var users = await _context.Users.ToListAsync();
+                var id = User.Claims.FirstOrDefault(c => c.Type == "id").Value;
+                return RedirectToAction("MyRequests", users.FirstOrDefault(c => c.Id.ToString() == id).Role);
+            }
+            if (user.Email != null)
+            {
+                _context.Add(user);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(My));
+            }
+            return View(user);
         }
 
     }

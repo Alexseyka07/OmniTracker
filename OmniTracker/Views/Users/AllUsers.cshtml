@@ -1,17 +1,20 @@
 ﻿@model IEnumerable<OmniTracker.Models.User>
 
 @{
+    Layout = "_LayoutAdmin";
     ViewData["Title"] = "AllUsers";
 }
 
 <h1>Пользователи</h1>
+<form >
+    <div class="form-group">
+        <button asp-action="Create" type="submit" class="btn btn-primary">новый пользователь</button>
+    </div>
+</form>
 <form asp-action="AllUsers">
     <input type="text" name="search" />
     <input type="submit" value="поиск" class="btn btn-primary" />
 </form>
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OmniTracker.Data;
+using OmniTracker.Login;
 using OmniTracker.Models;
 
 namespace OmniTracker.Controllers
@@ -24,48 +25,64 @@ namespace OmniTracker.Controllers
             _context = context;
         }
 
-        // GET: Requests
-
         public async Task<IActionResult> MyRequests()
         {
-
             var users = await _context.Users.ToListAsync();
-            var requests = await _context.Requests.Where(r => r.User.Id.ToString() == User.Claims.ToArray()[1].Value).ToListAsync();
+            var id = User.Claims.FirstOrDefault(c => c.Type == "id").Value;
+            var requests = await _context.Requests.Where(
+                r => r.User.Id.ToString() == id).ToListAsync();
 
-            return _context.Users != null ?
-                        View(requests) :
-                        Problem("Entity set 'OmniTrackerContext.User'  is null.");
-        }
-       
-        // GET: Requests/Create
-        public IActionResult Create()
+           if(!Login.Login.IsInRole(User, _context, HttpContext))
+           {
+               return RedirectToAction("MyRequests", users.FirstOrDefault(c => c.Id.ToString() == id).Role);
+           }
+            
+               
+            
+
+            return View(requests);
+        }          
+        public async Task<IActionResult> Create()
         {
+            if (!Login.Login.IsInRole(User, _context, HttpContext))
+            {
+                var users = await _context.Users.ToListAsync();
+                var id = User.Claims.FirstOrDefault(c => c.Type == "id").Value;
+                return RedirectToAction("MyRequests", users.FirstOrDefault(c => c.Id.ToString() == id).Role);
+            }
             return View();
         }
-
-        // POST: Requests/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Request request)
         {
+            if (!Login.Login.IsInRole(User, _context, HttpContext))
+            {
+                var users = await _context.Users.ToListAsync();
+                var id = User.Claims.FirstOrDefault(c => c.Type == "id").Value;
+                return RedirectToAction("MyRequests", users.FirstOrDefault(c => c.Id.ToString() == id).Role);
+            }
             if (request.Description != null)
             {
                 request.CreateDate = DateTime.Now;
                 request.Status = "Новая";
                 request.TermEimination = "не известно";
-                request.User =  _context.Users.FirstOrDefault(u => u.Id.ToString() == User.Claims.ToList()[1].Value);
+                var id = User.Claims.FirstOrDefault(c => c.Type == "id").Value;
+                request.User = await _context.Users.FirstOrDefaultAsync(
+                    u => u.Id.ToString() == id);
                 _context.Add(request);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(MyRequests));
             }
             return View(request);
         }
-
-        // GET: Requests/Edit/5
         public async Task<IActionResult> Edit(int id)
         {
+            if (!Login.Login.IsInRole(User, _context, HttpContext))
+            {
+                var users = await _context.Users.ToListAsync();
+                var idl = User.Claims.FirstOrDefault(c => c.Type == "id").Value;
+                return RedirectToAction("MyRequests", users.FirstOrDefault(c => c.Id.ToString() == idl).Role);
+            }
             if (id == null || _context.Requests == null)
             {
                 return NotFound();
@@ -77,15 +94,14 @@ namespace OmniTracker.Controllers
             }
             return View(request);
         }
-
-        // POST: Requests/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Request requestModel)
         {
-            if (id != requestModel.Id)
+            if (!Login.Login.IsInRole(User, _context, HttpContext))
             {
-                return NotFound();
+                var users = await _context.Users.ToListAsync();
+                var idl = User.Claims.FirstOrDefault(c => c.Type == "id").Value;
+                return RedirectToAction("MyRequests", users.FirstOrDefault(c => c.Id.ToString() == idl).Role);
             }
             var request = await _context.Requests.FindAsync(id);
             if (requestModel.Description != null)
@@ -97,7 +113,5 @@ namespace OmniTracker.Controllers
             }
             return View(request);
         }
-
-
     }
 }

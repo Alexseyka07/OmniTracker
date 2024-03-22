@@ -20,21 +20,21 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <dl class="row">
-                <dt class="col-sm-1">
+                <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.CreateDate)
                 </dt>
                 <dd class="col-sm-15">
                     @Html.DisplayFor(model => model.CreateDate)
-                </dd>
-                <dt class="col-sm-1">
-                    @Html.DisplayNameFor(model => model.Status)
-                </dt>
-                <dt class="col-sm-1">
+                </dd>               
+                <dt class="col-sm-2">
                     @Html.DisplayNameFor(model => model.TermEimination)
                 </dt>
                 <dd class="col-sm-15">
                     @Html.DisplayFor(model => model.TermEimination)
                 </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Status)
+                </dt>
                 <dd class="col-sm-15">
                     @Html.DisplayFor(model => model.Status)
                 </dd>

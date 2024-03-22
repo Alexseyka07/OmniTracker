@@ -20,11 +20,14 @@ namespace OmniTracker.Controllers
         {
             _context = context;
         }
-
-
         public async Task<IActionResult> MyRequests(string search)
         {
             var users = await _context.Users.ToListAsync();
+            var id = User.Claims.FirstOrDefault(c => c.Type == "id").Value;
+            if (!Login.Login.IsInRole(User, _context, HttpContext))
+            {
+                return RedirectToAction("MyRequests", users.FirstOrDefault(c => c.Id.ToString() == id.ToString()).Role);
+            }
 
             if (!string.IsNullOrEmpty(search))
             {
@@ -35,29 +38,24 @@ namespace OmniTracker.Controllers
             return View(await requests.ToListAsync());
 
         }
-
-
         public async Task<IActionResult> Edit(int id)
         {
-            if (id == null || _context.Requests == null)
+            if (!Login.Login.IsInRole(User, _context, HttpContext))
             {
-                return NotFound();
+                var users = await _context.Users.ToListAsync();
+                return RedirectToAction("MyRequests", users.FirstOrDefault(c => c.Id.ToString() == id.ToString()).Role);
             }
             var request = await _context.Requests.FindAsync(id);
-            if (request == null)
-            {
-                return NotFound();
-            }
             return View(request);
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Request requestModel)
         {
-            if (id != requestModel.Id)
+            if (!Login.Login.IsInRole(User, _context, HttpContext))
             {
-                return NotFound();
+                var users = await _context.Users.ToListAsync();
+                return RedirectToAction("MyRequests", users.FirstOrDefault(c => c.Id.ToString() == id.ToString()).Role);
             }
             var request = await _context.Requests.FindAsync(id);
             if (requestModel.Description != null)
